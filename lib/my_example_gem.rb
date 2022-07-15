@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 require_relative 'my_example_gem/version'
-require_relative 'my_example_gem/my_example_gem'
 
 module MyExampleGem
   class Error < StandardError; end
+end
 
-  # def self.foo
-  #   distance([0, 0], [1, 1])
-  # end
-
-  def self.bar
-    puts 'bar'
+begin
+  RUBY_VERSION =~ /(\d+\.\d+)/
+  require "my_example_gem_ext/#{Regexp.last_match(1)}/shopify_vm"
+rescue LoadError
+  begin
+    require 'my_example_gem.bundle'
+  rescue LoadError
+    require 'my_example_gem_ext/my_example_gem'
   end
 end

@@ -23,7 +23,6 @@ end
 
 require 'rubygems'
 require 'bundler/setup'
+require 'my_example_gem'
 
 load Gem.bin_path('pry', 'pry')
-
-require 'my_example_gem'
